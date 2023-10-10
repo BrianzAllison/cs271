@@ -1,8 +1,8 @@
 /**************************************** 
  * C-ploration 0 for CS 271 
  *   
- * [NAME] $YOUR_NAME$  
- * [TERM] FALL $YEAR$  
+ * [NAME] $Brian Allison$  
+ * [TERM] FALL $2023$  
  *****************************************/
 #include <stdio.h>
 int main() {
