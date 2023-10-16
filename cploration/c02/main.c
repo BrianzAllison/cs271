@@ -84,6 +84,9 @@ void reverse(char* txt, char* result) {
  */
 int vowels(char* txt) {
 	int vowel = 0;
+	if(txt == 0)
+		return vowel++;
+	else
 
 	return vowel;
 }
