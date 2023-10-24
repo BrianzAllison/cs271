@@ -52,10 +52,14 @@ CHIP ALU {
    //16 bit Add and And choice.
    Add16(a=xnew, b=o1, out=addxy);
    And16(a=xnew, b=ynew, out=andxy);
-   Mux16(a=addxy, b=andxy, sel=f, out=fxy);
+   Mux16(a=andxy, b=addxy, sel=f, out=fxy);
    //Negates fxy declaration.
    Not16(in=fxy, out=nfxy);
-   Mux16(a=fxy, b=nfxy, sel=no, out=out, out[15]=ng, out[0..7]=msb, out[0..15]=lsb);
-   
+   Mux16(a=fxy, b=nfxy, sel=no, out=out, out[15]=ng, out[0..7]=msb, out[8..15]=lsb);
+   Or8Way(in=msb, out=zr1);
+   Or8Way(in=lsb, out=zr2);
+   Or(a=zr1, b=zr2, out=zr3);
+   Not(in=zr3, out=zr);
+
 
 }
