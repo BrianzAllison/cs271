@@ -1,21 +1,23 @@
 /****************************************
  * C-ploration 4 for CS 271
  * 
- * [NAME] $YOUR_NAME$
- * [TERM] FALL $YEAR$
+ * [NAME] $Brian Allison$
+ * [TERM] FALL $2023$
  * 
  ****************************************/
 #include "parser.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, const char *argv[])
 {		
 
-	if(argc > 2){
+	if(argc < 2){
 		printf("Usage: %s [filename]\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
-	File *fin = fopen(argv[1], "r");
+	FILE *fin = fopen(argv[1], "r");
 
 	if (fin == NULL){
 		perror("File could not be opened bruh.");
