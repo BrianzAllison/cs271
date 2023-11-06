@@ -5,6 +5,7 @@
  * [TERM] FALL $2023$
  * 
  ****************************************/
+ #include "Parser.h"
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>

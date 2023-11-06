@@ -8,7 +8,6 @@
 #include "parser.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 int main(int argc, const char *argv[])
 {		
@@ -26,6 +25,7 @@ int main(int argc, const char *argv[])
 	}
 	parse(fin);
 	fclose(fin);
+	
 	return 0;
 			
 }
