@@ -31,8 +31,8 @@ char *strip(char *s){
 		} else if (!isspace(*s2)){
 			s_new[i++] = *s2;
 		}
-		s_new[i] = '\0';
 	}
+	s_new[i] = '\0';
 	
 	strcpy(s,s_new);
     return s;	
@@ -64,7 +64,7 @@ void parse(FILE * file){
 		if(!*line){
 			continue;
 		}
-		char inst_type = '\0';
+		char inst_type = ' ';
 		if(is_Atype(line)){
 			inst_type = 'A';
 		} else if(is_Ctype(line)){
@@ -72,6 +72,6 @@ void parse(FILE * file){
 		} else if(is_label(line)){
 			inst_type = 'L';
 		}
-		printf("%c %s\n", inst_type, line);
+		printf("%c  %s\n", inst_type, line);
 	}
 }
