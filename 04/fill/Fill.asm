@@ -28,7 +28,7 @@
     @pixels
     D = M 
     @START
-    D;JEG
+    D;JMP
 
     @KBD 
     D = M 
