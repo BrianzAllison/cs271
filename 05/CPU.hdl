@@ -44,7 +44,7 @@ CHIP CPU {
     And(a=ctype, b=instruction[4], out=cinstruct);
 
     Mux16(a=aluout, b=instruction, sel=atype, out=toareg);
-    ARegister(in=toareg, load=ainstruct, out[0..14]=addressM);
+    ARegister(in=toareg, load=ainstruct, out=aregout, out[0..14]=addressM);
 
     Mux16(a=aregout, b=inM, sel=instruction[12], out=inputsel);
 
@@ -59,7 +59,7 @@ CHIP CPU {
     And(a=instruction[0], b=posout, out=jgt);
     And(a=instruction[1], b=zrout, out=jeq);
     And(a=instruction[2], b=ngout, out=jlt);
-    Or(a=jeq, b=jlt, out=jgt);
+    Or(a=jeq, b=jlt, out=jle);
     Or(a=jgt, b=jle, out=jmp);
 
     And(a=jmp, b=ctype, out=dojump);
