@@ -127,8 +127,8 @@ void parse(FILE * file){
 			inst_type = 'L';
 			char label[MAX_LABEL_LENGTH] = {0};
 			strcpy(line, extract_label(line, label));
-			printf("%c  %s\n", inst_type, label);
-			if(isalpha(label[0])){
+			//printf("%c  %s\n", inst_type, label);
+			if(!isalpha(label[0])){
 				exit_program(EXIT_INVALID_LABEL, line_num, line);
 			} else if(symtable_find(label) != NULL){
 				exit_program(EXIT_SYMBOL_ALREADY_EXISTS, line_num, line);
@@ -138,6 +138,7 @@ void parse(FILE * file){
 
 		}
 		//printf("%c  %s\n", inst_type, line);
+		//printf("%u: %c  %s\n", instr_num, inst_type, line);
 		instr_num = instr_num + 1;
 	}
 

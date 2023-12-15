@@ -68,16 +68,16 @@ void parse(FILE * file){
 		if(!*line){
 			continue;
 		}
-		char inst_type = '\0';
+		char inst_type = ' ';
 		if(is_Atype(line)){
 			inst_type = 'A';
 		} else if(is_Ctype(line)){
 			inst_type = 'C';
 		} else if(is_label(line)){
 			inst_type = 'L';
-			char *new_label[MAX_LABEL_LENGTH];
-			extract_label(line, new_label);
-			printf("%c  %s\n", inst_type, new_label);
+			char label[MAX_LABEL_LENGTH] = {0};
+			strcpy(line, extract_label(line, label));
+			printf("%c  %s\n", inst_type, label);
 			continue;
 		}
 		printf("%c  %s\n", inst_type, line);

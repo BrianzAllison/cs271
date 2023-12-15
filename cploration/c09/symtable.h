@@ -17,7 +17,7 @@ typedef struct Symbol {
     hack_addr address;
 } Symbol;
 
-    unsigned int hashCode(char *str);
+    int hash(char *str);
     struct Symbol *symtable_find(char * key);
     void symtable_insert(char *key, hack_addr addr);
     void symtable_display_table();

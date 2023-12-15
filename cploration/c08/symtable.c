@@ -1,4 +1,5 @@
 #include "symtable.h"
+#include <stdio.h>
 
 
 struct Symbol* hashArray[SYMBOL_TABLE_SIZE];
@@ -17,17 +18,19 @@ void symtable_display_table(){
 
 }
 
+
 void symtable_insert(char* key, hack_addr data) {
 
    struct Symbol *item = (struct Symbol*) malloc(sizeof(struct Symbol));
+   item->name = (char*) malloc(strlen(key) + 1);
    item->address = data;  
-   item->name = key;
+   strcpy(item->name, key);
 
    //get the hash 
-   int hashIndex = hashCode(key);
+   int hashIndex = hash(key);
 
    //move in array until an empty or deleted cell
-   while(hashArray[hashIndex] != NULL && hashArray[hashIndex]->name != NULL) {
+   while(hashArray[hashIndex] != NULL && hashArray[hashIndex]->name) {
       //go to next cell
       ++hashIndex;
 		
@@ -37,22 +40,22 @@ void symtable_insert(char* key, hack_addr data) {
    hashArray[hashIndex] = item;
 }
 
-struct Symbol *symtable_find(char *str){
-    int hashIndex = hashCode(str);
+struct Symbol *symtable_find(char *key){
+    int hashIndex = hash(key);
 
     while(hashArray[hashIndex] != NULL){
-        if(hashArray[hashIndex] ->name == str)
+        if(!strcmp(hashArray[hashIndex] ->name, key))
         return hashArray[hashIndex];
 
         ++hashIndex;
 
         hashIndex %= SYMBOL_TABLE_SIZE;
-    }
+        }
     return NULL;
-}
+    }
 
-unsigned int hashCode(char *str)
-    {
+
+int hash(char *str) {
         unsigned long hash = 5381;
         int c;
 
@@ -66,8 +69,8 @@ void symtable_print_labels() {
    int i = 0;    
    for(i = 0; i<SYMBOL_TABLE_SIZE; i++) {
         if(hashArray[i] != NULL){
-             printf(" {%s,%d}\n",hashArray[i]->name,hashArray[i]->address);
+             printf("{%s,%d}\n",hashArray[i]->name,hashArray[i]->address);
         }
    }
-} 
+}
 
